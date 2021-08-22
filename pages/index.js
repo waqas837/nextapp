@@ -1,8 +1,5 @@
 import Layout from "../Components/Layout";
 import Image from "next/image";
-import db from "../utils/db";
-import ProductModel from "../models/Product";
-import {products} from "../utils/data"
 import Nextlink from "next/link";
 import {
   Grid,
@@ -12,22 +9,21 @@ import {
   Button,
 } from "@material-ui/core";
 export default function Home(props) {
-   
-  console.log(props.products)
+  // console.log(props);
   return (
     <div>
       <Layout>
         <h2>Products</h2>
         <Grid container>
-          {props.products.map((val, index) => (
+          {props.results.data.map((val, index) => (
             <div key={index}>
               <Grid item md={4}>
                 <Card style={{ marginBottom: 10 }}>
                   {val.title}
-                  <Nextlink href={`/products/${val.slug}`} passHref>
+                  <Nextlink href={`/products/${val._id}`} passHref>
                     <CardActionArea>
                       <Image
-                        src={val.image}
+                        src={val.selectedFile}
                         width={500}
                         height={300}
                         alt="image"
@@ -49,12 +45,13 @@ export default function Home(props) {
 }
 // it pre-renders the server side data, if we need it any component we can use it in any component;
 export async function getServerSideProps() {
-  await db.connect();
-  const products = await ProductModel.find().lean();
-  await db.disconnect();
+  const getdata = await fetch(
+    "https://hst-construction.herokuapp.com/user/getAllTheProduct"
+  );
+  const results = await getdata.json();
   return {
     props: {
-      products:products.map(db.DataToObj),
+      results,
     },
   };
 }

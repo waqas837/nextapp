@@ -16,7 +16,8 @@ import {
   Button,
 } from "@material-ui/core";
 import { ArrowLeft } from "@material-ui/icons";
-const Productname = () => {
+import db from "../../utils/db";
+const Productname = (props) => {
   const router = useRouter();
   const { slug } = router.query;
   const product = products.find((val) => val.slug === slug);
@@ -70,3 +71,19 @@ const Productname = () => {
 };
 
 export default Productname;
+
+
+// export async function getServerSideProps(context){
+//   //context contains the current page props and data context of any params
+//  const {params} = context;
+//  const {slug}  = params;
+//  await db.connect();
+//  const findProducts = await ProductModel.findOne({slug}).lean();
+//  await db.disconnect();
+//  return {
+//    props:{
+//      products:findProducts.map(db.DataToObj)
+//    }
+//  }
+
+// }

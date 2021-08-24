@@ -11,6 +11,9 @@ import {
 import { products } from "../utils/data";
 export default function Home(props) {
   // console.log(props);
+  const myLoader = ({ src, width, quality }) => {
+    return `https://example.com/${src}?w=${width}&q=${quality || 75}`
+  }
   return (
     <div>
       <Layout>
@@ -28,6 +31,7 @@ export default function Home(props) {
                         width={500}
                         height={300}
                         alt="image"
+                        priority={true}
                       />
                     </CardActionArea>
                   </Nextlink>

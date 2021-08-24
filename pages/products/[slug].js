@@ -45,6 +45,7 @@ import { ArrowLeft } from "@material-ui/icons";
                 width={640}
                 height={300}
                 alt={product.name}
+                priority={true}
               />
             </Grid>
             <Grid item md={5} sm={12}>

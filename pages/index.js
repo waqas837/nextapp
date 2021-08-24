@@ -8,6 +8,7 @@ import {
   CardActions,
   Button,
 } from "@material-ui/core";
+import { products } from "../utils/data";
 export default function Home(props) {
   // console.log(props);
   return (
@@ -15,15 +16,15 @@ export default function Home(props) {
       <Layout>
         <h2>Products</h2>
         <Grid container>
-          {props.results.data.map((val, index) => (
+          {products.map((val, index) => (
             <div key={index}>
               <Grid item md={4}>
                 <Card style={{ marginBottom: 10 }}>
-                  {val.title}
-                  <Nextlink href={`/products/${val._id}`} passHref>
+                  {val.name}
+                  <Nextlink href={`/products/${val.slug}`} passHref>
                     <CardActionArea>
                       <Image
-                        src={val.selectedFile}
+                        src={val.image}
                         width={500}
                         height={300}
                         alt="image"

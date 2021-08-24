@@ -16,8 +16,7 @@ import {
   Button,
 } from "@material-ui/core";
 import { ArrowLeft } from "@material-ui/icons";
-import db from "../../utils/db";
-const Productname = (props) => {
+ const Productname = (props) => {
   const router = useRouter();
   const { slug } = router.query;
   const product = products.find((val) => val.slug === slug);
